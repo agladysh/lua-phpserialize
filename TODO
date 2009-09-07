@@ -1,0 +1,8 @@
+-- Add proper Makefile
+-- Add a framework to run test conveniently (use one from lua-nucleo)
+-- See TODOs in lua-phpserialize.c
+-- Code must fit in 80 chars width
+-- Reuse code from lua-nucleo in util.{c,h}
+-- Prepend all preprocessor definitions (except L* checkers) with LPHPSERIALIZE_
+-- Backport some good practice from luabins.
+-- That is_float_finite definition is a bit scary. Think out more a legal way.

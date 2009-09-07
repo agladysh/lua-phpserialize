@@ -1,0 +1,5 @@
+LIBRARY lua-phpserialize.dll
+DESCRIPTION "lua-phpserialize"
+VERSION 0.0.1
+EXPORTS
+luaopen_phpserialize
