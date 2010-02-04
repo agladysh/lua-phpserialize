@@ -1,5 +1,5 @@
 package = "lua-phpserialize"
-version = "git-1"
+version = "scm-1"
 
 source = {
    url = "git://github.com/agladysh/lua-phpserialize.git"
