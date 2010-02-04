@@ -319,8 +319,8 @@ local test_serializettbl = function()
   ensure_strequals("mt1", serialize_result(setmetatable({}, mt)), [=[a:0:{}]=]) -- Say no to infinite loops!
 end
 
-assert(test_serialize())
-assert(test_serializefails())
-assert(test_serializettbl())
+test_serialize()
+test_serializefails()
+test_serializettbl()
 
 print("OK")
