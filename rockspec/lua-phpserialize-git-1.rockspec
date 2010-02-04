@@ -21,7 +21,7 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-      luabins = {
+      phpserialize = {
          sources = {
             "src/lua-phpserialize.c",
             "src/util.c"
