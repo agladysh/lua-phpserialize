@@ -1,4 +1,4 @@
-/* 
+/*
 * lphpserialize.c: Lua support for PHP serialize()
 * This file is a part of lua-phpserialize library.
 * Copyright (c) lua-phpserialize authors (see file `COPYRIGHT` for the license)
@@ -21,6 +21,11 @@
 #else
 #error "TODO: Find MIN/MAX values for 64bit platforms";
 #endif
+
+/* Arbitrary number of used stack slots to trigger preliminary concatenation */
+/* TODO: Should be dependent on LUAI_MAXCSTACK? */
+#define PHPSERIALIZE_CONCATTHRESHOLD (1024)
+
 
 enum SerializeStringID
 {
@@ -109,6 +114,28 @@ const char * const g_SerializeStrings[NUM_SSI + 1] =
  *
  * Note that it is not possible in Lua to have nil as table key.
  */
+
+/* If retain is 1, retains the top element on stack (slow) */
+static void maybe_concat(lua_State * L, int base, int retain)
+{
+  int top = lua_gettop(L);
+  if (top - base >= PHPSERIALIZE_CONCATTHRESHOLD)
+  {
+    if (retain)
+    {
+      lua_insert(L, base);
+    }
+
+    lua_concat(L, top - base);
+
+    if (retain)
+    {
+      /* swap result with retained element */
+      lua_pushvalue(L, -2);
+      lua_remove(L, -3);
+    }
+  }
+}
 
 /* Returns 0 if string looks like integer */
 static int Plookslikeinteger(const char * str, const size_t len)
@@ -306,6 +333,7 @@ static int Pphpserializevalue(lua_State * L, int index, int php_base_index, int 
       {
         int size = 0;
         int sizePos = 0;
+        int base_table_pos = lua_gettop(L);
         lua_pushvalue(L, lua_upvalueindex(SSI_ARRAY_BEGIN));
         lua_pushnil(L); /* Size placeholder */
         sizePos = lua_gettop(L);
@@ -340,6 +368,8 @@ static int Pphpserializevalue(lua_State * L, int index, int php_base_index, int 
           lua_pushinteger(L, size);
           lua_tostring(L, -1);
           lua_replace(L, sizePos);
+
+          maybe_concat(L, base_table_pos + 1, 1);
         }
       }
       break;
