@@ -204,7 +204,7 @@ static int Pphpserializekey(lua_State * L, int index, int php_base_index)
         /* instead of using lua`s tostring we make conversion by hand. This will overcome 10000... -> 1e14 issue */
         /* was: lua_pushinteger(L, number);lua_tostring(L, -1);*/
         /*snprintf(big_integer, sizeof(big_integer), "%d", number); // We can not use this method in c89 */
-        sprintf(big_integer, "%d", number);
+        sprintf(big_integer, "%d", (int)number);
         lua_pushstring(L, big_integer);
         lua_pushvalue(L, lua_upvalueindex(SSI_SEMICOLON));
       }
@@ -307,7 +307,7 @@ static int Pphpserializevalue(lua_State * L, int index, int php_base_index, int 
           {
             lua_Integer number_int = (lua_Integer)lua_tonumber(L, index);
             /*snprintf(big_integer, sizeof(big_integer), "%d", number_int); // We can not use this method in c89 */
-            sprintf(big_integer, "%d", number_int);
+            sprintf(big_integer, "%d", (int)number_int);
             lua_pushvalue(L, lua_upvalueindex(SSI_INTEGER));
           }
           lua_pushstring(L, big_integer);
