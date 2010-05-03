@@ -534,8 +534,7 @@ local t = {
       descrption="some long description4"
     }
   }
-  local result = phpserialize.phpserialize(t)
-  print(result)
+  assert(phpserialize.phpserialize(t))
 end
 
 
