@@ -93,9 +93,6 @@ const char * const g_SerializeStrings[NUM_SSI + 1] =
  * Any other key type (including non-integer numbers and
  * strings, convertible to integers, see below) would fail.
  *
- * Array part of table is serialized as Lua-native 1-based.
- * No attempt is made to convert it to PHP-native 0-based.
- *
  * Table value may be of any of serializable Lua types (see above).
  *
  * Notes on serialization of tables:
