@@ -9,7 +9,7 @@ phpserialize.phpserialize()
 Parameters:
 
  * `value`: value to be serialized
- * `php_base_index`: base index for resulting PHP arrays (if any). 
+ * `php_base_index`: base index for resulting PHP arrays (if any).
    Optional, default: 1.
 
 Serializes primitive Lua values (including tables) to format,
