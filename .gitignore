@@ -13,4 +13,5 @@
 /obj/
 /tmp/
 
-.genmake.sh
+*.o
+*.so
