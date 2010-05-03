@@ -1,0 +1,11 @@
+v0.0.2
+======
+
+Bugfix release.
+
+-- Better handling of huge tables (thanks to Alexander Fedora).
+
+v0.0.1
+======
+
+Initial release.
