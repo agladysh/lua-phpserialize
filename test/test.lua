@@ -2,6 +2,9 @@
 -- This file is a part of lua-phpserialize library.
 -- Copyright (c) lua-phpserialize authors (see file `COPYRIGHT` for the license)
 
+-- TODO: This test fails under LuaJIT2 due to different table traverse order.
+--       However, lua-phpserialize does support LJ2
+
 local check_phpserialize = function(t, actual, expected)
   if actual ~= expected then
     print("Phpserialize test failed: ".. t ..".\nactual:\n'" .. tostring(actual) .. "'\nexpected:\n'" .. tostring(expected) .. "'\n")

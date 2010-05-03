@@ -1,3 +1,4 @@
+-- Fix tests under LuaJIT 2 (see TODO in test.lua)
 -- Add proper Makefile
 -- Add a framework to run test conveniently (use one from lua-nucleo)
 -- See TODOs in lua-phpserialize.c
