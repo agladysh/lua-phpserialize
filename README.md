@@ -15,7 +15,7 @@ Parameters:
 Serializes primitive Lua values (including tables) to format,
 understandable by PHP's `unserialize()` function.
 
-Returns string with serialized data or nil and error message.
+Returns string with serialized data or `nil` and error message.
 
 Serializable Lua types with PHP counterparts:
 
